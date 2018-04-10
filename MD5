@@ -1,0 +1,15 @@
+c2ad60664722b62d8b738baabb95f647 *DESCRIPTION
+595614c35b72d1d5c1a2756342ea1334 *NAMESPACE
+9e977e76b40e11e17395bee148433e51 *NEWS.md
+a9f066ea09a756a001e1f7169d33822f *R/NetGen.R
+26c9c3086edc09b4f76df4fda942e8d1 *R/NetPlot.R
+02f5657641970fa8b760bf3aa95e3bf8 *README.md
+df8351e4d8cab0b876370660a673a5d2 *inst/CITATION
+34bc8a33e26c589301d451c27ea2201f *man/adj_plot.Rd
+cc5b87509902b6d28b34bed1317d9307 *man/figures/README-unnamed-chunk-2-1.png
+94f59c2734f0ec0d4b1a35e118e95741 *man/figures/README-unnamed-chunk-3-1.png
+c1966d98e95a98d1cbde673cd1688dfb *man/netgen.Rd
+b4f5c799e3e1ac73b60f17e6814e450a *src/FortranNetGen.f90
+12b24c18727fc8d7b031692504e34ea1 *src/zzz.c
+66f5d8d6c83cc3e4048fd329e14783f1 *tests/testthat.R
+561374560e2c9a9451f3e93d7899f757 *tests/testthat/test-netgen.R
