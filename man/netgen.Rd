@@ -4,40 +4,70 @@
 \alias{netgen}
 \title{netgen}
 \usage{
-netgen(n_modav = c(50, 10), cutoffs = c(3, 0), net_type = 1,
-  net_degree = 10, net_rewire = c(0.3, 0), mod_probs = 0)
+netgen(net_size = 50, ave_module_size = 10, min_module_size = 1,
+  min_submod_size = 1, net_type = c("mixed", "random", "scalefree",
+  "nested", "bi-partite nested", "bi-partite random",
+  "tri-trophic bipartite nested-random",
+  "tri-trophic bipartite nested-bipartite nested", "bn", "br", "tt-bn-r",
+  "tt-bn-bn"), ave_degree = 10, rewire_prob_global = 0.2,
+  rewire_prob_local = 0, mixing_probs = c(0.2, 0.2, 0.2, 0.2, 0.2, 0, 0),
+  verbose = FALSE)
 }
 \arguments{
-\item{n_modav}{network size and average module size (integer vector, length 2)}
+\item{net_size}{network size (number of nodes)}
 
-\item{cutoffs}{module and submodule minimum sizes (integer vector, length 2).
-(submodules are used only for bipartite and tripartite networks)}
+\item{ave_module_size}{average module size}
 
-\item{net_type}{integer indicating type, see details}
+\item{min_module_size}{cutoff for the minimum modules size}
 
-\item{net_degree}{average degree of connection}
+\item{min_submod_size}{cutoff for submodules, used only for bipartite and tripartite networks}
 
-\item{net_rewire}{global and local  network rewiring probabilities}
+\item{net_type}{network type, see details}
 
-\item{mod_probs}{module probabilities for types 1 to 51,
-used for constructing mixed networks, net_type = 0}
+\item{ave_degree}{average degree of connection}
+
+\item{rewire_prob_global}{probability any given edge should be rewired}
+
+\item{rewire_prob_local}{probability that edges within a module should be rewire locally
+(within the module)}
+
+\item{mixing_probs}{module probabilities for first 7 types,
+used for constructing mixed networks}
+
+\item{verbose}{logical, default TRUE. Should a message report summary statistics?}
 }
 \value{
 an \code{igraph} object
 }
 \description{
-netgen function
+Randomly generate a wide range of interaction networks
 }
 \details{
-network type
+network type is one of
 \itemize{
-\item 0 = mixed
-\item 1 = random
-\item 2 = scalefree
-\item 3 = nested
-\item 41 = bi-partite nested
-\item 42 = bi-partite random
-\item 51 = tri-trophic bipartite nested-random
-\item 52 = tri-trophic bipartite nested-bipartite nested
+\item mixed
+\item random
+\item scalefree
+\item nested
+\item bi-partite nested (or short-hand "bn")
+\item bi-partite random (or short-hand "br")
+\item tri-trophic bipartite nested-random. (Can use short-hand "ttbnr")
+\item tri-trophic bipartite nested-bipartite nested (Can use short-hand "ttbnbn")
+}
+
+NOTE: Function arguments have changed from those netgen 0.1.1 to be more intelligible.
+To restore the original function api on code that depends on the old version, you
+can simply add:
+
+\code{netgen <- EcoNetGen:::netgen_v1}
+
+to the top of your code after running \code{library(EcoNetGen)}.
+}
+\examples{
+library(EcoNetGen)
+\donttest{
+set.seed(12345)
+net <- netgen()
+adj_plot(net)
 }
 }
