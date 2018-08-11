@@ -1,8 +1,8 @@
 Package: EcoNetGen
-Version: 0.2.0
+Version: 0.2.1
 Title: Simulate and Sample from Ecological Interaction Networks
 Description: Randomly generate a wide range of interaction networks with
-             specified size, average degree, 'modularity', and topological
+             specified size, average degree, modularity, and topological
              structure. Sample nodes and links from within simulated networks
              randomly, by degree, by module, or by abundance. Simulations
              and sampling routines are implemented in 'FORTRAN', providing
@@ -29,15 +29,16 @@ Encoding: UTF-8
 LazyData: true
 ByteCompile: true
 RoxygenNote: 6.0.1.9000
-Suggests: testthat, covr, ggraph
+Suggests: spelling, testthat, covr, ggraph
 Imports: igraph, ggplot2
+Language: en-US
 NeedsCompilation: yes
-Packaged: 2018-05-17 22:43:42 UTC; cboettig
-Author: Marcus de Aguiar [aut, cph] (<https://orcid.org/0000-0003-1379-7568>>),
-  Erica Newman [aut] (<https://orcid.org/0000-0001-6433-8594>>),
-  Mathias Pires [aut] (<https://orcid.org/0000-0003-2500-4748>>),
+Packaged: 2018-08-10 23:41:28 UTC; cboettig
+Author: Marcus de Aguiar [aut, cph] (<https://orcid.org/0000-0003-1379-7568>),
+  Erica Newman [aut] (<https://orcid.org/0000-0001-6433-8594>),
+  Mathias Pires [aut] (<https://orcid.org/0000-0003-2500-4748>),
   NIMBioS [fnd],
-  Carl Boettiger [aut, cre] (<https://orcid.org/0000-0003-4580-091X>>)
+  Carl Boettiger [aut, cre] (<https://orcid.org/0000-0003-4580-091X>)
 Maintainer: Carl Boettiger <cboettig@gmail.com>
 Repository: CRAN
-Date/Publication: 2018-05-18 03:32:17 UTC
+Date/Publication: 2018-08-11 05:30:10 UTC
