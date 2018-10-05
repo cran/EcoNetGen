@@ -25,13 +25,27 @@
 #' - tri-trophic bipartite nested-random. (Can use short-hand "ttbnr")
 #' - tri-trophic bipartite nested-bipartite nested (Can use short-hand "ttbnbn")
 #'
-#'  NOTE: Function arguments have changed from those netgen 0.1.1 to be more intelligible.
-#'  To restore the original function api on code that depends on the old version, you
-#'  can simply add:
+#'  **Valid Parameter Ranges**
 #'
-#'  `netgen <- EcoNetGen:::netgen_v1`
+#'  Please note that not all combinations of parameters will create valid networks.
+#'  If an invalid combination is requested, `netgen()` will error with an informative
+#'  message.  A list of these constraints is provided below for reference.
 #'
-#'  to the top of your code after running `library(EcoNetGen)`.
+#'
+#' 1. `net_size >= ave_module_size`. If `net_size = ave_module_size`` the program
+#'  generates a network with a single module.
+#' 2. `ave_module_size > min_module_size`
+#' 3. `ave_degree >= 1`. Preferably larger than 4, to ensure single component modules.
+#' 4. `rewire_prob_global = 0` produces completely uncoupled modules. To ensure a single
+#'  component network use `rewire_prob_global > 0` and sufficiently large.
+#' 5. `rewire_prob_local = 0` produces idealized modules.
+#'  Use `rewire_prob_local > 0` to add stochasticity to the modules.
+#' 6. For tripartite networks `min_module_size > min_submod_size`.
+#'  This also implies `min_module_size >= 2`.
+#' 7. For scalefree networks (or mixed networks involving scalefree modules)
+#'  `ave_degree < min_module_size`
+#' 8. For mixed networks `mixing_probs` need to sum to `1`. If the sum is larger
+#'  than one, only the first types, corresponding to `sum <=1`, will be sampled.
 #'
 #' @importFrom igraph graph.data.frame graph_from_adjacency_matrix
 #' @importFrom utils read.table
@@ -47,7 +61,7 @@
 #' }
 netgen <- function(net_size = 50,
                    ave_module_size = 10,
-                   min_module_size = 1,
+                   min_module_size = 6,
                    min_submod_size = 1,
                    net_type = c("mixed",
                                 "random",
@@ -62,11 +76,49 @@ netgen <- function(net_size = 50,
                                 "tt-bn-r",
                                 "tt-bn-bn"
                                 ),
-                   ave_degree = 10,
+                   ave_degree = 5,
                    rewire_prob_global = 0.2,
                    rewire_prob_local = 0.0,
                    mixing_probs = c(0.2, 0.2, 0.2, 0.2, 0.2, 0.0 ,0.0),
                    verbose = FALSE){
+
+  if(sum(mixing_probs) == 0){
+    stop(paste("mixing_probs cannot all be zero"))
+  }
+  ## Normalize mixing probabilities
+  mixing_probs <- mixing_probs / sum(mixing_probs)
+
+  stopifnot(
+    ave_module_size > 1,
+    min_module_size > 1,
+    min_submod_size >= 1,
+    rewire_prob_global > 0,
+    rewire_prob_global < 1,
+    rewire_prob_local < 1,
+    length(mixing_probs) == 7
+    )
+
+  if(ave_module_size >= net_size)
+    stop(paste0("ave_module_size (",
+                ave_module_size,
+                ") must be less than net_size (",
+                net_size, ")"))
+
+  if(min_module_size <= min_submod_size){
+    stop(paste0("min_module_size (",
+               min_module_size,
+               ") is not greater than min_submod_size (",
+               min_submod_size, ")"))
+  }
+
+  if(ave_module_size < min_module_size){
+    stop(paste0("ave_module_size (",
+               ave_module_size,
+               ") is not greater than or equal to min_module_size (",
+               min_module_size, ")"))
+  }
+
+
 
   net_type <- match.arg(net_type)
   net_type <- switch(net_type,
@@ -86,6 +138,15 @@ netgen <- function(net_size = 50,
   if(net_type == 404){
     stop("net_type not found")
   }
+
+  if(net_type %in% c(0, 2)){
+    if(ave_degree >= min_module_size )
+    stop(paste0("Requested ave_degree (", ave_degree,
+                ") must be less requested min_module_size (",
+                min_module_size,
+                ") for 'scalefree' or 'mixed' network types"))
+  }
+
   n_modav <- c(net_size, ave_module_size)
   cutoffs <- c(min_module_size, min_submod_size)
   rewire_probs <- c(rewire_prob_global, rewire_prob_local)
