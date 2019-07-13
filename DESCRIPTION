@@ -1,5 +1,5 @@
 Package: EcoNetGen
-Version: 0.2.2
+Version: 0.2.3
 Title: Simulate and Sample from Ecological Interaction Networks
 Description: Randomly generate a wide range of interaction networks with
              specified size, average degree, modularity, and topological
@@ -28,12 +28,12 @@ BugReports: https://github.com/cboettig/EcoNetGen/issues
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Suggests: spelling, testthat, covr, ggraph
 Imports: igraph, ggplot2
 Language: en-US
 NeedsCompilation: yes
-Packaged: 2018-10-05 17:40:35 UTC; cboettig
+Packaged: 2019-07-12 15:19:46 UTC; cboettig
 Author: Marcus de Aguiar [aut, cph] (<https://orcid.org/0000-0003-1379-7568>),
   Erica Newman [aut] (<https://orcid.org/0000-0001-6433-8594>),
   Mathias Pires [aut] (<https://orcid.org/0000-0003-2500-4748>),
@@ -41,4 +41,4 @@ Author: Marcus de Aguiar [aut, cph] (<https://orcid.org/0000-0003-1379-7568>),
   Carl Boettiger [aut, cre] (<https://orcid.org/0000-0003-4580-091X>)
 Maintainer: Carl Boettiger <cboettig@gmail.com>
 Repository: CRAN
-Date/Publication: 2018-10-05 17:52:13 UTC
+Date/Publication: 2019-07-13 23:30:14 UTC

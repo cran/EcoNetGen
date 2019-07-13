@@ -27,8 +27,8 @@ double precision, INTENT(IN), DIMENSION(2) :: rewindprobs
 double precision, INTENT(IN), DIMENSION(7) :: mod_probs
 INTEGER, ALLOCATABLE :: degree(:)
 INTEGER, DIMENSION(200) :: modsize_sav
-CHARACTER*20 namenet
-CHARACTER*50 name_network,prop_network,adj_network
+CHARACTER(20) namenet
+CHARACTER(50) name_network,prop_network,adj_network
 double precision p1, p2, p3, p41, p42, p51, p52, prew, prewloc
 double precision pc1, pc2, pc3, pc41, pc42, pc51, pc52, p, an, aux
 namenet = "default"
@@ -253,7 +253,9 @@ end subroutine SubNetGen
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 SUBROUTINE RANDOMMOD(ini,modtot)
 USE globals
+double precision unifrnd
 double precision p
+double precision aux
 iini = ini + 1
 ifin = modtot
 modsize = ifin - ini
@@ -284,7 +286,7 @@ IMPLICIT double precision(A-H,O-Z)
 INTEGER, ALLOCATABLE ::  co(:),sco(:),id(:),b(:,:)
 INTEGER sm
 modsize = modtot - ini
-m = int(avk)
+m = int(avk/2.0)
 m0 = m+1
 ALLOCATE (b(modsize,modsize))
 ALLOCATE (co(modsize),sco(modsize),id(m))
@@ -361,7 +363,7 @@ IMPLICIT double precision(A-H,O-Z)
 double precision alpha
 ifin = modtot
 modsize = ifin-ini
-alpha = log(1.0D0+1.0D0/avk)  ! populate module
+alpha = log(1.0D0+2.0D0/avk)  ! populate module
 do i=1,modsize
   n1 = int(modsize*exp(-alpha*(i-1)))
   do j=i+1,n1
