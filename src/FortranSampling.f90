@@ -110,11 +110,9 @@ ALLOCATE (idx(n))
 ALLOCATE (w(n,n))
 
 if(neigh_crit == 1) then
-!    ALLOCATE (w(n,n))
     w = 0.0
 end if
 
-CALL init_random_seed()
 
 k = 0
 a = 0

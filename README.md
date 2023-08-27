@@ -1,15 +1,10 @@
 EcoNetGen
 ================
 
-[![Travis-CI Build
-Status](https://travis-ci.org/cboettig/EcoNetGen.svg?branch=master)](https://travis-ci.org/cboettig/EcoNetGen)
-[![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/cboettig/EcoNetGen?branch=master&svg=true)](https://ci.appveyor.com/project/cboettig/EcoNetGen)
 [![Coverage
-Status](https://img.shields.io/codecov/c/github/cboettig/EcoNetGen/master.svg)](https://codecov.io/github/cboettig/EcoNetGen?branch=master)
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/EcoNetGen)](https://cran.r-project.org/package=EcoNetGen)
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![downloads](https://cranlogs.r-pkg.org/badges/grand-total/netgen)](https://github.com/metacran/cranlogs.app)
+Status](https://img.shields.io/codecov/c/github/cboettig/EcoNetGen/master.svg)](https://app.codecov.io/github/cboettig/EcoNetGen?branch=master)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/EcoNetGen)](https://cran.r-project.org/package=EcoNetGen)
+[![downloads](https://cranlogs.r-pkg.org/badges/grand-total/netgen)](https://github.com/r-hub/cranlogs.app)
 [![DOI](https://zenodo.org/badge/116610054.svg)](https://zenodo.org/badge/latestdoi/116610054)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -21,7 +16,7 @@ simulated networks randomly, by degree, by module, or by abundance.
 Simulations and sampling routines are implemented in FORTRAN, providing
 efficient generation times even for large networks. Basic visualization
 methods also included. Algorithms implemented here are described in de
-Aguiar et al. (2017)
+Aguiar et al. (2017)
 [arXiv:1708.01242](https://arxiv.org/abs/1708.01242).
 
 ## Installation
@@ -47,8 +42,8 @@ machine.
 ## Randomly generate networks
 
 This is a basic example which generates a network. See `?netgen` for
-documentation describing the parameter arguments. Setting `verbose =
-FALSE` (default) suppresses the output summary message.
+documentation describing the parameter arguments. Setting
+`verbose = FALSE` (default) suppresses the output summary message.
 
 ``` r
 library(EcoNetGen)

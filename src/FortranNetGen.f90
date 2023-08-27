@@ -58,7 +58,6 @@ adj_network = "./output_gen/"//trim(namenet)//trim('_adj.txt')
 
 
 call rndstart()
-!CALL init_random_seed()
 
 ! cummulative probabilies
 pc1 = p1
@@ -553,14 +552,3 @@ END
 
 
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-SUBROUTINE init_random_seed()
-INTEGER :: i, n, clock
-INTEGER, DIMENSION(:), ALLOCATABLE :: seed
-CALL RANDOM_SEED(size = n)
-ALLOCATE(seed(n))
-CALL SYSTEM_CLOCK(COUNT=clock)
-seed = clock + 37 * (/ (i - 1, i = 1, n) /)
-CALL RANDOM_SEED(PUT = seed)
-DEALLOCATE(seed)
-END SUBROUTINE
